@@ -1,0 +1,197 @@
+================================================================================
+                     RESTAURANT RATINGS ANALYSIS — TASK EXPLANATION
+================================================================================
+
+TASK TITLE
+    Restaurant Ratings Analysis
+
+TASK OBJECTIVES
+    1. Analyze the distribution of aggregate ratings across all restaurants.
+    2. Determine the most common rating range within the dataset.
+    3. Calculate the average number of votes received by restaurants.
+
+--------------------------------------------------------------------------------
+
+SECTION 1: UNDERSTANDING THE DATASET
+--------------------------------------------------------------------------------
+
+The dataset contains information about 9,551 restaurants spanning multiple
+countries, cities, and cuisines. Each restaurant record includes geographic
+data, cuisine types, pricing, service features, and — most critically for this
+task — an "Aggregate rating" and "Votes" field.
+
+Key columns for this task:
+  - Aggregate rating : A numeric score between 0.0 and 5.0
+  - Rating text      : A qualitative label (e.g., "Good", "Excellent")
+  - Votes            : The number of user votes the restaurant has received
+
+--------------------------------------------------------------------------------
+
+SECTION 2: RATING DISTRIBUTION ANALYSIS
+--------------------------------------------------------------------------------
+
+What is Aggregate Rating?
+    The aggregate rating is a composite score assigned to each restaurant,
+    typically derived from user reviews. It ranges from 0.0 (no data or
+    very poor) to 5.0 (outstanding).
+
+How Was Distribution Analyzed?
+    Ratings were grouped into five equal-width bins:
+        - Range 0–1  : Very low or unrated
+        - Range 1–2  : Poor performance
+        - Range 2–3  : Below average
+        - Range 3–4  : Average to good
+        - Range 4–5  : Very good to excellent
+
+Results — Rating Distribution:
+
+    Rating Range    Count     Percentage
+    ─────────────────────────────────────
+    0 – 1           2,148       22.49%
+    1 – 2              10        0.10%
+    2 – 3           1,891       19.80%
+    3 – 4           4,388       45.94%   ← MOST COMMON
+    4 – 5           1,114       11.66%
+
+Key Statistical Metrics:
+    - Mean Rating   : 2.67
+    - Median Rating : 3.20
+    - Minimum       : 0.00
+    - Maximum       : 4.90
+
+Most Common Rating Range:
+    The 3–4 range is the most frequently occurring band, containing 4,388
+    restaurants — nearly 46% of all records. This indicates a general tendency
+    toward above-average but not exceptional ratings, consistent with typical
+    consumer rating behavior where extremely low or high scores are rare.
+
+Rating Category Breakdown:
+    Category        Count
+    ──────────────────────
+    Average          3,737
+    Not rated        2,148
+    Good             2,100
+    Very Good        1,079
+    Excellent          301
+    Poor               186
+
+Interpretation:
+    A large proportion of restaurants receive an "Average" rating, reinforcing
+    the findings from the range analysis. The high number of "Not rated"
+    restaurants (matching the 0–1 range) suggests that many restaurants either
+    lack sufficient reviews or are newly listed on the platform.
+
+--------------------------------------------------------------------------------
+
+SECTION 3: AVERAGE VOTES ANALYSIS
+--------------------------------------------------------------------------------
+
+What are Votes?
+    Votes represent the number of individual user ratings or reviews submitted
+    for a restaurant. A higher vote count generally indicates greater
+    visibility, popularity, or user engagement.
+
+Overall Votes Summary:
+
+    Metric                          Value
+    ──────────────────────────────────────
+    Total Restaurants               9,551
+    Total Votes in Dataset      1,498,645
+    Average Votes per Restaurant      156.91
+    Median Votes per Restaurant        31.00
+    Standard Deviation                430.17
+    Minimum Votes                         0
+    Maximum Votes                    10,934
+
+Interpretation of the Gap (Mean vs. Median):
+    The mean (156.91) is significantly higher than the median (31.00). This
+    indicates a right-skewed distribution: a small number of restaurants have
+    extremely high vote counts (some exceeding 10,000), pulling the average
+    upward. The median is a more robust measure of the "typical" restaurant's
+    vote count in this dataset.
+
+Average Votes by Rating Range:
+
+    Rating Range    Avg Votes    Median Votes    Total Votes
+    ─────────────────────────────────────────────────────────
+    0 – 1               0.87            0.0          1,869
+    1 – 2             144.20          127.0          1,442
+    2 – 3              38.99           15.0         73,732
+    3 – 4             162.15           66.0        711,523
+    4 – 5             637.41          327.0        710,079
+
+Key Observation:
+    Restaurants with higher ratings receive significantly more votes. The
+    4–5 range averages 637 votes per restaurant — over 16 times more than the
+    2–3 range. This suggests a positive feedback loop: better-rated restaurants
+    attract more visitors, who in turn leave more reviews.
+
+Average Votes by Rating Category:
+
+    Category        Avg Votes    Median Votes
+    ──────────────────────────────────────────
+    Excellent          851.77        489.0
+    Very Good          520.46        271.0
+    Good               229.35        121.0
+    Poor                90.72         61.0
+    Average             48.25         20.0
+    Not rated            0.87          0.0
+
+--------------------------------------------------------------------------------
+
+SECTION 4: VISUALIZATIONS PRODUCED
+--------------------------------------------------------------------------------
+
+Six charts were generated to support the analysis:
+
+  1. fig1_rating_histogram.png
+     Histogram of all aggregate ratings with mean and median reference lines.
+     Shows the full shape of the rating distribution.
+
+  2. fig2_rating_range_bar.png
+     Bar chart showing the count of restaurants in each rating range, annotated
+     with counts and percentage share.
+
+  3. fig3_rating_pie.png
+     Pie chart illustrating the proportional share of each rating range across
+     all restaurants.
+
+  4. fig4_rating_category.png
+     Horizontal bar chart showing the count of restaurants per qualitative
+     rating category (Poor, Average, Good, etc.).
+
+  5. fig5_votes_boxplot.png
+     Box plot revealing the spread and outliers of vote counts within each
+     rating range, highlighting the high variability among top-rated restaurants.
+
+  6. fig6_avg_votes_bar.png
+     Bar chart of average votes per rating range, with an overall average
+     reference line for comparison.
+
+--------------------------------------------------------------------------------
+
+SECTION 5: CONCLUSIONS
+--------------------------------------------------------------------------------
+
+1. The most common rating range is 3–4, representing 45.94% of all restaurants.
+   This reflects a concentration of above-average performers in the dataset.
+
+2. The mean aggregate rating is 2.67, dragged down by 2,148 unrated restaurants
+   (rating = 0). When considering only rated restaurants, the central tendency
+   shifts meaningfully higher.
+
+3. The average number of votes per restaurant is 156.91. However, due to
+   extreme right skew, the median of 31.00 is a more representative benchmark
+   for a typical restaurant's engagement level.
+
+4. There is a strong, positive relationship between rating quality and vote
+   count — highly rated restaurants not only perform better but are also
+   reviewed far more frequently.
+
+5. Outlier restaurants (those with thousands of votes and near-perfect ratings)
+   are relatively rare but significantly influence aggregate averages.
+
+--------------------------------------------------------------------------------
+
+END OF TASK EXPLANATION
+================================================================================
